@@ -134,3 +134,24 @@ form button:hover {
   background-color: #ff6600;
   color: white;
 }
+
+/* styles.css */
+
+/* Add styles for error messages */
+/* styles.css */
+
+/* Add styles for error messages */
+/* styles.css */
+
+.error-message {
+  background-color: #ffdddd; /* Light red background */
+  color: #d8000c; /* Dark red text */
+  padding: 10px;
+  border: 1px solid #d8000c;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 14px; /* Match the font size from the image */
+  text-align: center;
+}
+

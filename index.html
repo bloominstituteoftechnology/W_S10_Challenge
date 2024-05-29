@@ -4,63 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pizza App</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="%PUBLIC_URL%/styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Pizza App <span>🍕</span></h1>
-    <div class="form-and-orders">
-      <div class="form-container">
-        <div class="pizza-form">
-          <h2>Pizza Form</h2>
-          <div id="error-message"></div>
-          <form id="pizzaForm">
-            <div class="form-group input-container">
-              <label for="fullName">Full Name</label>
-              <input type="text" id="fullName" placeholder="Type full name" required minlength="3" maxlength="20" data-testid="fullNameInput">
-            </div>
-            <div class="form-group input-container">
-              <label for="size">Size</label>
-              <select id="size" required data-testid="sizeSelect">
-                <option value="">----Choose size----</option>
-                <option value="S">Small</option>
-                <option value="M">Medium</option>
-                <option value="L">Large</option>
-              </select>
-            </div>
-            <div class="form-group input-container">
-              <label>Toppings</label>
-              <label><input type="checkbox" value="1" data-testid="checkPepperoni"> Pepperoni</label>
-              <label><input type="checkbox" value="2" data-testid="checkGreenPeppers"> Green Peppers</label>
-              <label><input type="checkbox" value="3" data-testid="checkPineapple"> Pineapple</label>
-              <label><input type="checkbox" value="4" data-testid="checkMushrooms"> Mushrooms</label>
-              <label><input type="checkbox" value="5" data-testid="checkHam"> Ham</label>
-            </div>
-            <div class="form-group input-container">
-              <button type="submit" data-testid="submit">Submit</button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="orders-container">
-        <div class="pizza-orders">
-          <h2>Pizza Orders</h2>
-          <div id="orders">
-            <div class="order">
-              <strong>Sigourney Weaver</strong> ordered a size S with 2 toppings: Pepperoni, Pineapple
-            </div>
-          </div>
-          <div class="filter">
-            <label>Filter by size:</label>
-            <button class="filter-btn active" data-size="all">All</button>
-            <button class="filter-btn" data-size="S">S</button>
-            <button class="filter-btn" data-size="M">M</button>
-            <button class="filter-btn" data-size="L">L</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script src="script.js"></script>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
 </body>
 </html>
