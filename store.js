@@ -1,8 +1,19 @@
-import { configureStore } from '@reduxjs/toolkit';
-import ordersReducer from './reducers'; // Ensure this path is correct
+import { configureStore } from '@reduxjs/toolkit'
+import orderReducer from '../components/orderSlice'  // Import the orderSlice reducer
 
-const store = configureStore({
-  reducer: ordersReducer,
-});
+const exampleReducer = (state = { count: 0 }) => {
+  return state
+}
 
-export default store;
+export const resetStore = () => configureStore({
+  reducer: {
+    example: exampleReducer,
+    orders: orderReducer,  // Add the orderReducer here
+  },
+  middleware: getDefault => getDefault().concat(
+    // if using RTK Query for your networking: add your middleware here
+    // if using Redux Thunk for your networking: you can ignore this
+  ),
+})
+
+export const store = resetStore()

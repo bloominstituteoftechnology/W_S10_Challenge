@@ -1,157 +1,162 @@
+@font-face {
+  font-family: 'Titillium Web';
+  src: url('../fonts/TitilliumWeb-SemiBold.ttf');
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f7f7f7;
-  margin: 0;
-  padding: 0;
+  font-family: 'Titillium Web', sans-serif;
+  border: 1rem solid #ff4b00;
 }
 
-.container {
-  max-width: 800px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  text-align: center;
-  color: #800080;
-}
-
-h1 span {
-  font-size: 1.5em;
-}
-
-.form-and-orders {
+#root,
+body {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
 }
 
-.form-container, .orders-container {
-  width: 48%;
-}
-
-.pizza-form, .pizza-orders {
-  width: 100%;
+h1,
+h2 {
+  color: #93005a;
 }
 
 h2 {
-  color: #800080;
   text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
-form {
+#root {
+  width: 100%;
+  overflow-y: auto;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+header,
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+button,
+input[type=submit] {
+  color: gray;
+  border: 1px solid lightgray;
+}
+
+button:hover,
+input[type=submit]:hover {
+  color: black;
+  background-color: lightgray;
+}
+
+form,
+.input-group {
+  display: flex;
+  flex-direction: column;
+  width: 290px;
+}
+
+.input-group {
+  border: 1px solid lightgray;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+input[type=text],
+select {
+  width: 250px;
+}
+
+input[type=checkbox] {
+  margin-right: 0.5rem;
+}
+
+input[type=submit] {
+  margin-top: 1rem;
+}
+
+.pending {
+  background-color: rgb(224, 255, 224);
+  color: rgb(0, 81, 11);
+  font-size: 0.75rem;
+  padding: 0.75rem;
+  margin-top: 1rem;
+}
+
+.failure {
+  background-color: rgb(255, 201, 201);
+  color: rgb(189, 0, 0);
+  font-size: 0.75rem;
+  padding: 0.75rem;
+  margin-top: 1rem;
+}
+
+#app {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+#app ol {
+  margin-top: 2rem;
+}
+
+#app li {
+  border: 1px solid lightgray;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+#orderList {
+  margin-left: 1rem;
+  width: 290px;
+}
+
+footer>a {
+  font-size: 0.85em;
+  color: #ff4b00;
+}
+
+#sizeFilters {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+}
+
+.button-filter {
+  margin-left: 0.5rem;
+}
+
+.button-filter.active {
+  background-color: #ff4b00;
+  border-color: #ff4b00;
+  color: white;
+}
+.order-item {
+  border: 1px solid lightgray;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.order-item > div {
   display: flex;
   flex-direction: column;
 }
 
-.form-group {
-  margin-bottom: 15px;
+.order-item > div > p {
+  margin: 0;
+  padding: 0 1rem;
 }
 
-.input-container {
-  background: #f9f9f9;
-  padding: 15px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-}
-
-.input-container label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-form input, form select, form button {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-form button {
-  background-color: #000;
-  color: white;
-  cursor: pointer;
-  border: none;
-}
-
-form button:hover {
-  background-color: #333;
-}
-
-#error-message {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 15px;
-  display: none;
-}
-
-#orders {
-  margin-top: 20px;
-}
-
-.order {
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.order strong {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 1.2em;
-  color: #333;
-}
-
-.filter {
-  margin-top: 20px;
-}
-
-.filter label {
-  margin-right: 10px;
-}
-
-.filter .filter-btn {
-  padding: 5px 10px;
-  margin-right: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: white;
-  cursor: pointer;
-}
-
-.filter .filter-btn.active, .filter .filter-btn:hover {
-  background-color: #ff6600;
-  color: white;
-}
-
-/* styles.css */
-
-/* Add styles for error messages */
-/* styles.css */
-
-/* Add styles for error messages */
-/* styles.css */
-
-.error-message {
-  background-color: #ffdddd; /* Light red background */
-  color: #d8000c; /* Dark red text */
-  padding: 10px;
-  border: 1px solid #d8000c;
-  border-radius: 4px;
-  margin-bottom: 10px;
+.order-number {
   font-weight: bold;
-  font-size: 14px; /* Match the font size from the image */
-  text-align: center;
 }
-
