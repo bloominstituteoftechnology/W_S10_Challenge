@@ -1,19 +1,12 @@
-import React from 'react';
-import Form from './components/Form';
-import Orders from './components/Orders';
+import React from 'react'
+import PizzaForm from './PizzaForm'
+import OrderList from './OrderList'
 
-const App = () => {
+export default function App() {
   return (
-    <div className="container">
-      <h1>
-        Pizza App <span role="img" aria-label="pizza">🍕</span>
-      </h1>
-      <div className="form-and-orders">
-        <Form />
-        <Orders />
-      </div>
+    <div id="app">
+      <PizzaForm />
+      <OrderList />
     </div>
-  );
-};
-
-export default App;
+  )
+}

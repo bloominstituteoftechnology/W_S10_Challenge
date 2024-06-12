@@ -1,16 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux';
-import store from './src/redux/store'; // Correct relative path to store.js
-import App from './src/App'; // Correct relative path to App.js
-import './styles.css'; // Correct relative path to styles.css in the frontend folder
+import './styles/reset.css'
+import './styles/styles.css'
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import { Provider } from 'react-redux'
+import { store } from './state/store'
+import App from './components/App'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const domNode = document.getElementById('root')
+const root = createRoot(domNode)
 
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>
-);
+  <Provider store={store}>
+    <App />
+  </Provider>
+)
