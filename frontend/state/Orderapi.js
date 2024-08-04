@@ -1,35 +1,27 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const orderApi = createApi({
-    reducerPath: 'orderApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:9009/api/pizza/'}),
-    tagTypes: ['History', 'Order'],
-    endpoints: build => ({
-        getHistory: build.query({
+export const ordersApi = createApi({
+    reducerPath: 'ordersApi',
+    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:9009/api/pizza/' }),
+    tagTypes: ['Orders'],
+    endpoints: (builder) => ({
+        getOrders: builder.query({
             query: () => 'history',
-            providesTags: ['History']
+            transformResponse: (response) => {
+                console.log('Fetched Orders:', response); 
+                return response;
+            },
+            providesTags: ['Orders'],
         }),
-        createOrder: build.mutation({
-            query: order => ({
+        createOrder: builder.mutation({
+            query: (order) => ({
                 url: 'order',
                 method: 'POST',
-                body: order
+                body: order,
             }),
-            invalidatesTags: ['Order']
+            invalidatesTags: ['Orders'],
         }),
-        filterSize: build.mutation({
-            query: ({ size, hx }) => ({
-                url: `history/${size}`,
-                method: 'PUT',
-                body: hx
-            }),
-            invalidatesTags: ['History']
-        })
-    })
-})
+    }),
+});
 
-export const {
-    useGetHistoryQuery,
-    useCreateOrderMutation,
-    useFilterSizeMutation
-} = orderApi
+export const { useGetOrdersQuery, useCreateOrderMutation} = ordersApi;
