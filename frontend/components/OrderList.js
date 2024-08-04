@@ -4,7 +4,6 @@ import { useGetOrdersQuery } from '../state/ordersApi';
 import { toggleSizeFilter } from '../state/ordersSlice';
 
 export default function OrderList() {
-  // eslint-disable-next-line no-unused-vars
   const { data: orders, isLoading: ordersLoading, isFetching: ordersRefreshing, error } = useGetOrdersQuery();
 
   const filterSize = useSelector(state => state.ordersState.filterSize);
