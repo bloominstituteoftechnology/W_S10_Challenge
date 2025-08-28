@@ -1,17 +1,24 @@
-import React from 'react'
+import React, { useMemo, useState } from 'react'
+import { useGetOrdersQuery } from '../state/ordersApi'
 
 export default function OrderList() {
-  const orders = []
+  const { data: orders = [] } = useGetOrdersQuery()
+  const [size, setSize] = useState('All')
+
+  const filtered = useMemo(() => {
+    return size === 'All' ? orders : orders.filter(o => o.size === size)
+  }, [orders, size])
+
   return (
     <div id="orderList">
       <h2>Pizza Orders</h2>
       <ol>
         {
-          orders.map(() => {
+          filtered.map((ord) => {
             return (
-              <li key={1}>
+              <li key={ord.id}>
                 <div>
-                  order details here
+                  {`${ord.customer} ordered a size ${ord.size} with ${ord.toppings ? ord.toppings.length : 'no'} toppings`}
                 </div>
               </li>
             )
@@ -21,12 +28,16 @@ export default function OrderList() {
       <div id="sizeFilters">
         Filter by size:
         {
-          ['All', 'S', 'M', 'L'].map(size => {
-            const className = `button-filter${size === 'All' ? ' active' : ''}`
+          ['All', 'S', 'M', 'L'].map(s => {
+            const className = `button-filter${s === size ? ' active' : ''}`
             return <button
-              data-testid={`filterBtn${size}`}
+              data-testid={`filterBtn${s}`}
               className={className}
-              key={size}>{size}</button>
+              key={s}
+              onClick={() => setSize(s)}
+              >
+                {s}
+              </button>
           })
         }
       </div>
