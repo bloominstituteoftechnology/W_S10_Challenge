@@ -1,38 +1,25 @@
-import React, { useState, useMemo } from 'react'
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { useCreateOrderMutation } from '../state/ordersApi'
-
-const initialFormState = { // suggested
-  fullName: '',
-  size: '',
-  '1': false,
-  '2': false,
-  '3': false,
-  '4': false,
-  '5': false,
-}
-
-const TOPPING_IDS = ['1', '2', '3', '4', '5']
+import { fieldChanged, bundleOrder, resetForm } from '../state/pizzaFormSlice'
 
 export default function PizzaForm() {
-  const [form, setForm] = useState(initialFormState)
-  const [createOrder, { isLoading, isError, error }] = useCreateOrderMutation()
+  const dispatch = useDispatch()
+  const form = useSelector(state => state.pizzaForm)
+  const [createOrder, { isLoading, isError, error, }] = useCreateOrderMutation()
 
   const handleChange = e => {
     const { name, type, checked, value } = e.target
-    setForm(f => ({ ...f, [name]: type === 'checkbox' ? checked : value}))
+    dispatch(fieldChanged({ name, value: type === 'checkbox' ? checked : value }))
   }
 
 
   const onSubmit = e => {
     e.preventDefault()
-    const payload = {
-      fullName: form.fullName.trim(),
-      size: form.size,
-      toppings: TOPPING_IDS.filter(id => form[id])
-    }
+    const { payload } = bundleOrder(form)
     createOrder(payload)
       .unwrap()
-      .then(() => setForm(initialFormState))
+      .then(() => dispatch(resetForm()))
       .catch((err) => err)
   }
 
@@ -77,19 +64,19 @@ export default function PizzaForm() {
 
       <div className="input-group">
         <label>
-          <input data-testid="checkPepperoni" name="1" type="checkbox" onChange={handleChange} checked={form[1]} />
+          <input data-testid="checkPepperoni" name="1" type="checkbox" onChange={handleChange} checked={form['1']} />
           Pepperoni<br /></label>
         <label>
-          <input data-testid="checkGreenpeppers" name="2" type="checkbox" onChange={handleChange} checked={form[2]} />
+          <input data-testid="checkGreenpeppers" name="2" type="checkbox" onChange={handleChange} checked={form['2']} />
           Green Peppers<br /></label>
         <label>
-          <input data-testid="checkPineapple" name="3" type="checkbox" onChange={handleChange} checked={form[3]} />
+          <input data-testid="checkPineapple" name="3" type="checkbox" onChange={handleChange} checked={form['3']} />
           Pineapple<br /></label>
         <label>
-          <input data-testid="checkMushrooms" name="4" type="checkbox" onChange={handleChange} checked={form[4]} />
+          <input data-testid="checkMushrooms" name="4" type="checkbox" onChange={handleChange} checked={form['4']} />
           Mushrooms<br /></label>
         <label>
-          <input data-testid="checkHam" name="5" type="checkbox" onChange={handleChange} checked={form[5]} />
+          <input data-testid="checkHam" name="5" type="checkbox" onChange={handleChange} checked={form['5']} />
           Ham<br /></label>
       </div>
       <input data-testid="submit" type="submit" />

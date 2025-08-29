@@ -25,5 +25,5 @@ export const ordersApi = createApi({
 
 export const {
     useGetOrdersQuery,
-    useCreateOrderMutation
+    useCreateOrderMutation,
 } = ordersApi
