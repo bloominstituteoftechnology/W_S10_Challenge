@@ -24,7 +24,7 @@ The main goal is to implement a form that can POST pizza orders to a server. The
 
 ### TASK 1 - Study the mock site
 
-Your fully-functional **design mock** is [HERE](https://w-s10-challenge-ac3b8bb5dab3.herokuapp.com/).
+Your fully-functional **design mock** is [HERE](https://web-sp10-chall-fe.netlify.app/).
 
 Study it using Chrome Devtools, paying special attention to the Network and the Redux tabs.
 
